@@ -1,0 +1,35 @@
+html{
+    background-color: rgb(31, 196, 179);
+}
+th, td{
+border: 1px solid black;
+width:15vw;
+
+}
+
+body{
+    background-color: rgb(219, 253, 251);
+}
+.form, .btns{
+    display: flex;
+    flex-direction: row;
+    padding:20px;
+}
+header{
+    background-color: rgb(89, 224, 224);
+}
+table {
+    table-layout: fixed ;
+    /* width: 50vw ; */
+  }
+  .btnFlex{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width:6vw
+      /* font-size: xx-small; */
+      
+  }
+  .btns{
+      width:10px;
+  }

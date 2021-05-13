@@ -1,4 +1,4 @@
-import { useJournalEntries, saveEntry, getEntries, deleteEntry } from "./CRUDProvider.js"
+import { useJournalEntries, saveEntry, getEntries, deleteEntry, editEntry } from "./CRUDProvider.js"
 import JournalEntryComponent from "./CRUDComponent.js"
 
 
@@ -6,6 +6,7 @@ import JournalEntryComponent from "./CRUDComponent.js"
 const eventHub = document.querySelector(".container")
 
 const EntryListComponent = () => {
+    let edit = false
     const content = document.querySelector(".entryLog")
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === "record") {
@@ -53,7 +54,7 @@ const EntryListComponent = () => {
     eventHub.addEventListener("click", e => {
 
         if (e.target.id.startsWith("editNote--")) {
-
+            let edit = true
             const [prefix, id] = e.target.id.split("--")
 
             const entryToBeEdited = id
@@ -65,63 +66,46 @@ const EntryListComponent = () => {
                     console.log(found)
                     return found
                 }
-            }
-            )
+            })
             let editbtn = document.querySelector(`#editNote--${id}`)
             editbtn.innerHTML = "Update"
-            console.log(foundEntry[0].company)
 
+            let comp = document.querySelector(".company").value = foundEntry[0].company
+            let desc = document.querySelector(".description").value = foundEntry[0].description
+            let hm = document.querySelector(".hiringM").value = foundEntry[0].hiringM
+            let tech = document.querySelector(".techs").value = foundEntry[0].techs
+            let applied = document.querySelector(".applied").value = foundEntry[0].applied
+            let updatedEntry = {
+                company: comp,
+                description: desc,
+                hiringM: hm,
+                techs: tech,
+                applied: applied
+            }
+            console.log(updatedEntry)
 
-            document.querySelector(".company").value = foundEntry[0].company
-            document.querySelector(".description").value = foundEntry[0].description
-            document.querySelector(".hiringM").value = foundEntry[0].hiringM
-            document.querySelector(".techs").value = foundEntry[0].techs
-            document.querySelector(".applied").value = foundEntry[0].applied
+            editEntry(newEntry).then(
+                () => {
+                    getEntries().then(
+                        () => {
+                            let recordedEntries = useJournalEntries()
+                            console.log(recordedEntries)
+                            content.classList.remove("emptyLog")
+                            render(recordedEntries)
+                        }
+                    )
+                }
+            )
+            document.querySelector(".company").value = ""
+            document.querySelector(".description").value = ""
+            document.querySelector(".hiringM").value = ""
+            document.querySelector(".techs").value = ""
+            document.querySelector(".applied").value = ""
 
-            // let company = document.getElementById("#company").value
-            // console.log(company)
-            // let desc = document.querySelector(".desc").value
-            // let hm = document.querySelector(".hm").value
-            // let tech = document.querySelector(".tech").value
-            // let appl = document.querySelector(".appl").value
-
-            // let company = document.querySelector(`#${e.target.company}`)
-
-            // const [prefix, id] = e.target.id.split("--")
-            // console.log(prefix, id)
-            // document.querySelector(".company").value = "s"
-            // document.querySelector(".description").value = "s"
-            // document.querySelector(".hiringM").value = "s"
-            // document.querySelector(".techs").value = "s"
-            // document.querySelector(".applied").value = "s"
-
-
-
-            // const editEvent = new CustomEvent("editButtonClicked", {
-            //     detail: {
-            //         noteId: id
-            //     }
-            // })
-            // eventHub.dispatchEvent(editEvent)
 
         }
     })
-    // eventHub.addEventListener("entryEdited", event => {
-    //     const updatedEntries = useJournalEntries()
-    //     content.classList.remove("emptyLog")
-    //     render(updatedEntries)
-    // })
 
-    // eventHub.addEventListener("click", theEvent => {
-    //     if (theEvent.target.id.startsWith("editNote--")) {
-    //         const dialogSiblingSelector = `#${theEvent.target.id}+dialog`
-    //         const theDialog = document.querySelector(dialogSiblingSelector)
-    //         theDialog.showModal()
-    //     } else if (theEvent.target.classList.contains("button--close")) {
-    //         const dialogElement = theEvent.target.parentNode
-    //         dialogElement.close()
-    //     }
-    // })
 
     eventHub.addEventListener("click", clickEvent => {
         if (clickEvent.target.id.startsWith("deleteNote--")) {

@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "id": "1",
+      "id": "SEK3cu",
       "company": "40AU",
       "description": "hello",
       "hiringManager": "bob",
@@ -17,14 +17,6 @@
       "id": "pNmchc1"
     },
     {
-      "company": "jsnbdkbaskjdnsakj",
-      "hiringM": "dasdasdasdasdasdsd",
-      "description": "consultancy that takes on new jobs all the time",
-      "techs": "JS<CSS<MVC<SQL<HTML<ASP>NET<CORE",
-      "applied": "aadsasdasdasd",
-      "id": "gWPa9IH"
-    },
-    {
       "company": "dasdsa",
       "hiringM": "dasa",
       "description": "dasd",
@@ -33,12 +25,12 @@
       "id": "D57STjf"
     },
     {
-      "company": "a",
-      "hiringM": "a",
-      "description": "a",
-      "techs": "a",
-      "applied": "a",
-      "id": "dcRyuJA"
+      "company": "q",
+      "hiringM": "q",
+      "description": "q",
+      "techs": "q",
+      "applied": "q",
+      "id": "PwKTxzn"
     }
   ]
 }

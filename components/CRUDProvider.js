@@ -3,6 +3,8 @@ let journal = []
 export const getEntries = () => {
     //requests the data from an API from the internet
     return fetch("http://localhost:3000/entries")
+
+
         //When we get a response with a string, parse the string. YOU CAN ONLY SEND STRINGS OVER THE INTERNET
         .then(response => response.json())
         //Then do something with the data

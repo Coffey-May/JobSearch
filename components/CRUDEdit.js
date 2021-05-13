@@ -1,10 +1,12 @@
-import { useJournalEntries, editEntry } from "./JournalDataProvider.js"
+import { useJournalEntries, editEntry } from "./CRUDProvider.js"
 
-const eventHub = document.querySelector(".container")
+const eventHub = document.querySelector(".formDiv")
 
 
 export const journalEdit = () => {
+    console.log("hi")
     eventHub.addEventListener("editButtonClicked", event => {
+        console.log("ojojojo")
         const entryToBeEdited = event.detail.noteId
         const allEntries = useJournalEntries()
         const foundEntry = allEntries.find(

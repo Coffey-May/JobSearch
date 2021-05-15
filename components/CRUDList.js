@@ -4,7 +4,7 @@ import JournalEntryComponent from "./CRUDComponent.js"
 
 
 const eventHub = document.querySelector(".container")
-
+//EDIT
 const EntryListComponent = () => {
     let edit = false
     const content = document.querySelector(".entryLog")
